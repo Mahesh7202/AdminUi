@@ -14,6 +14,7 @@ const Form = ({ user, setShowModal }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     updateUser(values.id, values);
+    setShowModal(false);
   };
 
   const onChange = (e) => {
