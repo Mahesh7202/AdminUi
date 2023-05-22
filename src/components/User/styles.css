@@ -1,0 +1,58 @@
+
+
+td {
+  width: 36px;
+  height: 36px;
+  margin-right: .5rem;
+  font-weight: 400;
+
+  vertical-align: middle;
+}
+
+input {
+  accent-color: #007bff;
+}
+
+
+tr {
+  border-bottom: 1pt solid rgb(49, 48, 48);
+}
+
+.tr_chk {
+  background-color: grey;
+  filter: brightness(60%);
+}
+
+.edit-btn,
+.delete-btn {
+  width: 2rem;
+  height: 1.5rem;
+  margin-right: 5px;
+  background-color: transparent;
+  border: none;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  transition: all .2s ease-in-out;
+  transform: translateY(-4px) scale(1.05, 1.05);
+}
+
+
+#role {
+  width: 125px;
+  height: 35px;
+  padding: .4rem 0;
+  border-radius: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.admin {
+  background-color: #86e49d;
+}
+
+.member {
+  background-color: #46a2c6;
+}

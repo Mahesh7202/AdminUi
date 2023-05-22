@@ -1,0 +1,131 @@
+main.table{
+    width: 82vw;
+    height: 95vh;
+    background-color: #d5d1defe;
+    box-shadow: 0 .4rem .8reem #0005;
+    border-radius: .8rem;
+    overflow: hidden;
+}
+
+.Loader{
+    font-size: larger;
+    font-weight: 500;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+}
+
+.table_header{
+    width: 100%;
+    height: 10%;
+    background-color: #007bff;
+    padding: .8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table_header .input_group{
+    width: 35%;
+    height: 100%;
+    background-color: #fff;
+    padding: 0.8rem;
+    border-radius: 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .2s;
+}
+
+.table_header .input_group input{
+    width: 100%;
+    padding: 0 .5rem 0 .3rem;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    outline: none;
+}
+
+.table_header .input_group img{
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.table_header .input_group:hover{
+    width: 45%;
+    background-color: #fff;
+    box-shadow: 0.1rem .4rem #0002;
+}
+
+
+.table_body{
+    width: 95%;
+    max-height: calc(89% - 1.6rem);
+    background-color: #fffb;
+    margin: .8rem auto;
+    border-radius: .6rem;
+
+    overflow: auto;
+}
+
+.table_body::-webkit-scrollbar{
+    width: .5rem;
+    height: .5rem;
+
+}
+
+
+.table_body::-webkit-scrollbar-thumb{
+  border-radius: .5rem;
+  background-color: #0004;
+  visibility: hidden;
+
+}
+
+.table_body:hover::-webkit-scrollbar{
+   visibility: visible;
+}
+
+table{
+    width: 100%;
+}
+
+@media(max-width: 1000px) {
+
+    td:not(:first-of-type){
+        min-width: 12.1rem;
+    }
+
+    
+    
+}
+
+svg{
+    width: 2rem;
+    height: 1.5rem;
+}
+
+svg:hover{
+    transition: all .2s ease-in-out;
+    transform: translateY(-4px) scale(1.05, 1.05);
+}
+
+.btn{
+    height: 35px;
+    width: 170px;
+    font-size: 2vh;
+    font-weight: bold;
+    background-color: #e82424;
+    border: none;
+    color: #ddd;
+    border-radius: 45vh;
+    outline: none;
+    cursor: pointer;
+    margin: 0 10px;
+  }
+
+  .btn:hover{
+    filter: brightness(85%);
+  }
