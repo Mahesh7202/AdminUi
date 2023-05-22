@@ -1,13 +1,12 @@
 import React, { useContext, useState } from "react";
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../Providers/UserContextProvider";
 import Modal from "../Modal";
 import "./styles.css";
+import useAlert from "../Providers/useAlert";
 
 function User({ user, isChecked, handleChange, allowMultiSelectRow }) {
   const { deleteUser } = useContext(UserContext);
-
-  
-
+  const {setAlert} = useAlert();
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -34,7 +33,7 @@ function User({ user, isChecked, handleChange, allowMultiSelectRow }) {
           <button className="edit-btn" onClick={() => setShowModal(true)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              enable-background="new 0 0 32 32"
+              enableBackground="new 0 0 32 32"
               viewBox="0 0 32 32"
               id="edit"
               style={{ fill: "blue" }}
@@ -43,7 +42,10 @@ function User({ user, isChecked, handleChange, allowMultiSelectRow }) {
               <path d="M30,14.5c-0.82861,0-1.5,0.67188-1.5,1.5v10c0,1.37891-1.12158,2.5-2.5,2.5H6c-1.37842,0-2.5-1.12109-2.5-2.5V6c0-1.37891,1.12158-2.5,2.5-2.5h10c0.82861,0,1.5-0.67188,1.5-1.5S16.82861,0.5,16,0.5H6C2.96729,0.5,0.5,2.96777,0.5,6v20c0,3.03223,2.46729,5.5,5.5,5.5h20c3.03271,0,5.5-2.46777,5.5-5.5V16C31.5,15.17188,30.82861,14.5,30,14.5z" />
             </svg>
           </button>
-          <button className="delete-btn" onClick={() => deleteUser(user.id) }>
+          <button className="delete-btn" onClick={() => {
+            deleteUser(user.id);
+            setAlert("success","The action to Delete Row are Deleted succesfully.")
+          }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"
@@ -59,8 +61,6 @@ function User({ user, isChecked, handleChange, allowMultiSelectRow }) {
       {showModal && (
         <Modal className="modal" user={user} setShowModal={setShowModal} />
       )}
-
-  
     </>
   );
 }

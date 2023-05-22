@@ -1,5 +1,5 @@
 import {createContext, useEffect, useState} from 'react';
-import { baseApiURL } from "../config/env";
+import { baseApiURL } from "../../config/env";
 
 export const UserContext = createContext()
 
@@ -9,24 +9,22 @@ const UserContextProvider  = (props) => {
     const [userData, setUserData] = useState([])
 
     useEffect(() => {
-        setTimeout(() => {
-          fetch(baseApiURL)
-            .then((response) => {
-              if (!response.ok) {
-                throw Error("could not fetch the data for that resource");
-              }
-              return response.json();
-            })
-            .then((data) => {
-       
-              setUserData(data);
-    
-            })
-            .catch((err) => {
-            });
-        }, 1000);
-      }, []);
 
+      const fetchData = async () => {
+        try {
+          const response = await fetch(baseApiURL);
+          if (!response.ok) {
+            throw new Error('Error fetching data');
+          }
+          const data = await response.json();
+          setUserData(data);
+        } catch (error) {
+          throw error; 
+        }
+      };
+
+      fetchData();
+    },[]);
 
 const sortedUsers = userData.sort((user1,user2)=>(user1.id < user2.id ? -1 : 1));
 

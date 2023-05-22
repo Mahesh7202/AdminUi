@@ -1,14 +1,14 @@
-import React, { useContext,useCallback, useState } from "react";
+import React, { useContext, useCallback, useState } from "react";
 import Table from "../UserTable/UserTable";
 import "./styles.css";
-import { UserContext } from "../../context/UserContext";
-import { variants } from "../Constants/variants";
-import { Alert } from "../Alert/Alert";
+import { UserContext } from "../Providers/UserContextProvider";
+import useAlert from "../Providers/useAlert";
 
-function UserList() {
+function UserUi() {
+
   const { sortedUsers, filteringUsers, deleteSelectedUsers } = useContext(UserContext);
 
-  const [showAlert,setShowAlert] = useState(false);
+  const {setAlert} = useAlert();
 
   const [search, setSearch] = useState("");
   const [selectedRows, setSelectedRows] = useState([]);
@@ -16,6 +16,8 @@ function UserList() {
   const selectedRow = useCallback((rows) => {
     setSelectedRows(rows);
   }, []);
+
+  
 
   return (
     <>
@@ -32,10 +34,10 @@ function UserList() {
 
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              fill-rule="evenodd"
-              stroke-linejoin="round"
-              stroke-miterlimit="2"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              strokeLinejoin="round"
+              strokeMiterlimit="2"
+              clipRule="evenodd"
               viewBox="0 0 128 128"
               id="search"
             >
@@ -60,16 +62,15 @@ function UserList() {
           className="btn delete_selected"
           onClick={() => {
             deleteSelectedUsers(selectedRows)
-            setShowAlert(true)
+            setAlert("success","The action to Delete Selected Row are Deleted succesfully.");
           }
-          }
+        }
         >
           Delete Selected
         </button>
       </main>
-      {showAlert && <Alert variant={variants[0].success} message={"The action to Delete Selected Row are Deleted succesfully."}/>}
     </>
   );
 }
 
-export default UserList;
+export default UserUi;

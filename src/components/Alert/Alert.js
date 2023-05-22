@@ -1,24 +1,26 @@
 import React, { useState } from "react";
 import "./styles.css";
+import useAlert from "../Providers/useAlert";
 
-export const Alert = ({ variant, message }) => {
+export const Alert = () => {
+  const { type, text } = useAlert();
+
   const [open, setOpen] = useState(true);
-  console.log(message);
   if (open)
     return (
       <div
         className="alert-container"
         style={{
-          background: variant.mainColor,
-          border: "0.1rem solid " + variant.secondaryColor,
+          background: text === "success" ? "#EDFEEE" : "#FDEDED",
+          border: "0.1rem solid " + text === "success" ? "#5CB660" : "#F16360",
         }}
       >
         <div
           className="symbol-container"
-          style={{ background: variant.secondaryColor }}
+          style={{ background: text === "success" ? "#5CB660" : "#F16360" }}
         >
           <span className="symbol">
-            {variant.symbol === "success" ? (
+            {text === "success" ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="44"
@@ -36,8 +38,8 @@ export const Alert = ({ variant, message }) => {
           </span>
         </div>
         <div className="description-container">
-          <span className="description-title">{variant.title}:</span>
-          <span className="description-text">{message}</span>
+          <span className="description-title">{text}:</span>
+          <span className="description-text">{type}</span>
         </div>
         <button className="symbol-close-link" onClick={() => setOpen(false)}>
           <span className="">X</span>

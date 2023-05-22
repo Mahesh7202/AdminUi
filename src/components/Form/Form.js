@@ -1,20 +1,19 @@
 import { useContext, useState } from "react";
 import FormInput from "./FormInput";
 import "./styles.css";
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../Providers/UserContextProvider";
 import { users } from "../Constants/constants";
+import useAlert from "../Providers/useAlert";
 
 const Form = ({ user, setShowModal }) => {
   const { updateUser } = useContext(UserContext);
   const [values, setValues] = useState(user);
 
+  const { setAlert } = useAlert();
 
-
-  console.log(user);
   const handleSubmit = (e) => {
     e.preventDefault();
     updateUser(values.id, values);
-    setShowModal(false)
   };
 
   const onChange = (e) => {
@@ -36,17 +35,17 @@ const Form = ({ user, setShowModal }) => {
           <button
             onClick={() => {
               setShowModal(false);
-              
             }}
             id="cancelBtn"
           >
             Cancel
           </button>
-          <button type="submit">Update</button>
+          <button type="submit" onClick={()=>{
+              setAlert("success", "Edit Row was carried out succesfully.");
+          }}>Update</button>
         </div>
       </form>
-
-   
+ 
     </>
   );
 };

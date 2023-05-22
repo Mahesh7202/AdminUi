@@ -1,9 +1,8 @@
 main.table{
-    width: 82vw;
-    height: 95vh;
+    width: 100vw;
+    height: 100vh;
     background-color: #d5d1defe;
     box-shadow: 0 .4rem .8reem #0005;
-    border-radius: .8rem;
     overflow: hidden;
 }
 

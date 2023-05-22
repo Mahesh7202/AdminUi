@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "../Form/EditForm";
+import Form from "../Form/Form";
 import "./styles.css";
 
 function Modal({ user, setShowModal }) {

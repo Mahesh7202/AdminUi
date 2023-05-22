@@ -1,76 +1,80 @@
-import React, { useEffect, useCallback, useMemo, useState } from 'react';
-import './styles.css';
+import React, { useEffect, useCallback, useMemo, useState } from "react";
+import "./styles.css";
 
-
-function Pagination({ pages = 10, setCurrentPage }) {
-
-  const numberOfPages =  useMemo(() => {
-    return [...Array(pages).keys()]
+function Pagination({ pages, setCurrentPage }) {
+  const numberOfPages = useMemo(() => {
+    return [...Array(pages).keys()];
   }, [pages]);
 
-  const [currentButton, setCurrentButton] = useState(1)
+  const [currentButton, setCurrentButton] = useState(1);
 
-
-  const changeArray = useCallback(()=>{
-    let tempNumberOfPages = []
-    for(let i=0; i<5;i++){
-        if(currentButton+i <= numberOfPages.length)
-            tempNumberOfPages.push(i+currentButton);
+  const changeArray = useCallback(() => {
+    let tempNumberOfPages = [];
+    for (let i = 0; i < 5; i++) {
+      if (currentButton + i <= numberOfPages.length)
+        tempNumberOfPages.push(i + currentButton);
     }
-    setCurrentPage(currentButton)
-    return tempNumberOfPages
-  }, [currentButton, numberOfPages, setCurrentPage]);
+    return tempNumberOfPages;
+  }, [currentButton,numberOfPages]);
 
   useEffect(() => {
-        changeArray();
-    }, [currentButton, changeArray])
-
+    changeArray();
+    setCurrentPage(currentButton);
+  }, [currentButton, changeArray,setCurrentPage]);
 
   return (
     <div className="pagination-container">
       <button
-        className={`${currentButton === 1 ? 'disabled' : ''}`}
+        className={`${currentButton === 1 ? "disabled" : ""}`}
         onClick={() => setCurrentButton(1)}
       >
-      &lt;&lt;
-
+        &lt;&lt;
       </button>
 
       <button
-        className={`${currentButton === 1 ? 'disabled' : ''}`}
-        onClick={() => setCurrentButton(prev => prev <= 1 ? prev : prev - 1)}
+        className={`${currentButton === 1 ? "disabled" : ""}`}
+        onClick={() =>
+          setCurrentButton((prev) => (prev <= 1 ? prev : prev - 1))
+        }
       >
-      &lt;
+        &lt;
       </button>
 
-      {changeArray().map(((item, index) => {
-        return <button
+      {changeArray().map((item, index) => {
+        return (
+          <button
             key={index}
-          className={`${currentButton === item ? 'active' : ''}`}
-          onClick={() => setCurrentButton(item)}
-        >
-          {item}
-        </button>
-      }))}
+            className={`${currentButton === item ? "active" : ""}`}
+            onClick={() => setCurrentButton(item)}
+          >
+            {item}
+          </button>
+        );
+      })}
 
       <button
-        className={`${currentButton === numberOfPages.length ? 'disabled' : ''}`}
-        onClick={() => setCurrentButton(prev => prev >= numberOfPages.length ? prev : prev + 1)}
+        className={`${
+          currentButton === numberOfPages.length ? "disabled" : ""
+        }`}
+        onClick={() =>
+          setCurrentButton((prev) =>
+            prev >= numberOfPages.length ? prev : prev + 1
+          )
+        }
       >
         &gt;
       </button>
 
       <button
-        className={`${currentButton === numberOfPages.length ? 'disabled' : ''}`}
+        className={`${
+          currentButton === numberOfPages.length ? "disabled" : ""
+        }`}
         onClick={() => setCurrentButton(numberOfPages.length)}
       >
-      &gt;&gt;
+        &gt;&gt;
       </button>
-
-
     </div>
   );
 }
 
-
-export default Pagination
+export default Pagination;

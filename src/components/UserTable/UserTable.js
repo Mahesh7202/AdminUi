@@ -25,6 +25,7 @@ function UserTable({sortedUsers,
 
   const howManyPages = Math.ceil(sortedUsers.length / usersPerPage);
 
+  const headers = ["Name","Email Id","Role","Action"]
   
 
 
@@ -57,8 +58,8 @@ function UserTable({sortedUsers,
     <>
       <table>
         <thead>
-          <tr>
-            <th>
+          <tr key="header">
+            <th key="selectAllCheckbox">
               {allowMultiSelectRow && (
                 <input
                   type="checkbox"
@@ -72,15 +73,16 @@ function UserTable({sortedUsers,
                 />
               )}
             </th>
-            <th>Name</th>
-            <th>Email Id</th>
-            <th>Role</th>
-            <th>Actions</th>
+
+            { headers.map((header, index)=>
+              <th key={index}>{header.toUpperCase()}</th>
+            )}
+            
           </tr>
         </thead>
 
         <tbody>
-          {users.map((user, index) => (
+          {users.map((user) => (
             <>
               <User user={user} isChecked={isChecked} handleChange={handleChange} allowMultiSelectRow={allowMultiSelectRow} />
             </>

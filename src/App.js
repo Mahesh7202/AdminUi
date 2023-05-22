@@ -1,12 +1,15 @@
-import UserList from './components/UserList/UserList';
-import UserContextProvider from './context/UserContext';
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
+import UserUi from "./components/UserUI/UserUi";
+import UserContextProvider from "./components/Providers/UserContextProvider";
 
 function App() {
   return (
     <div className="App">
+      <ErrorBoundary>
         <UserContextProvider>
-            <UserList />
+          <UserUi />
         </UserContextProvider>
+      </ErrorBoundary>
     </div>
   );
 }
